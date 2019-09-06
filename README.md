@@ -25,12 +25,12 @@ encapsulation).
 Using git dependency:
 ```edn
 com.github.vlaaad/blanket {:git/url "https://github.com/vlaaad/blanket"
-                           :sha "e29af06b0586361d35996ad4c5c9029cf11b188c"}
+                           :sha "3f54f3cfec43f9de67cda56cc2ec1d88d7936951"}
 ```
 
 Using maven:
 ```edn
-com.github.vlaaad/blanket {:mvn/verion "1.0.0"}
+com.github.vlaaad/blanket {:mvn/verion "1.1.0"}
 ```
 
 # Usage

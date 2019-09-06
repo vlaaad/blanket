@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.vlaaad</groupId>
   <artifactId>blanket</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <name>blanket</name>
   <dependencies>
     <dependency>
