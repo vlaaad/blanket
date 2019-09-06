@@ -1,4 +1,4 @@
-# Blanket
+# Blanket [![Clojars project](https://img.shields.io/clojars/v/com.github.vlaaad/blanket.svg)](https://clojars.org/com.github.vlaaad/blanket)
 
 *Soft* encapsulation for Clojure data structures
 
@@ -25,7 +25,7 @@ encapsulation).
 Using git dependency:
 ```edn
 com.github.vlaaad/blanket {:git/url "https://github.com/vlaaad/blanket"
-                           :sha "b766c610dac0ac40fc71864f5535a392757f1d3c"}
+                           :sha "e29af06b0586361d35996ad4c5c9029cf11b188c"}
 ```
 
 Using maven:
