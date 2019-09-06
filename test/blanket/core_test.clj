@@ -8,7 +8,7 @@
   (in-ns 'blanket.core-test.a)
   (let [x @(def x (blanket/cover {:a 1}))]
     (in-ns 'blanket.core-test.b)
-    (is (re-matches #"#impl-in\[blanket.core-test.a 0x[0-9a-f]+\]" (pr-str x)))))
+    (is (re-matches #"#impl\[blanket.core-test.a 0x[0-9a-f]+\]" (pr-str x)))))
 
 (deftest does-not-hide-from-printing-in-same-namespace
   (in-ns 'blanket.core-test.a)

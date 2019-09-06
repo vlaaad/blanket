@@ -17,14 +17,15 @@ Blanket is extremely lightweight and non-intrusive: it changes covered objects'
 metadata to only affect printing, so your covered hash-map is still same map, 
 and your covered vector is still same vector, with all equality semantics etc.
 retained. It does not really prevent any access, just helps your users to get 
-better understanding of your library's contract (hence *soft* encapsulation).
+better understanding of your library's API contracts (hence *soft* 
+encapsulation).
 
 # Install
 
 Using git dependency:
 ```edn
 com.github.vlaaad/blanket {:git/url "https://github.com/vlaaad/blanket"
-                         :sha "b766c610dac0ac40fc71864f5535a392757f1d3c"}
+                           :sha "b766c610dac0ac40fc71864f5535a392757f1d3c"}
 ```
 
 Using maven:
@@ -58,8 +59,8 @@ com.github.vlaaad/blanket {:mvn/verion "1.0.0"}
   (:require service))
 
 ;; create a service without seeing implementation details
-(prn (service/make {:some :opts})) ;; => #impl-in[service 0x7c6442c2]
-(prn service/async-config) ;; => #impl-in[service 0x6de0f580]
+(prn (service/make {:some :opts})) ;; => #impl[service 0x7c6442c2]
+(prn service/async-config) ;; => #impl[service 0x6de0f580]
 
 (service/perform-request (service/make {:some :opts}) service/async-config)
 ```

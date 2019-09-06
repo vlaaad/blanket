@@ -3,19 +3,20 @@
            [java.io Writer]))
 
 (defn- default-print-method [x ^Writer writer]
-  (doto writer
-    (.write "#impl-in[")
-    (.write (str (::ns (meta x))))
-    (.write " ")
-    (.write (format "0x%x" (System/identityHashCode x)))
-    (.write "]")))
+  (.write writer (format "0x%x" (System/identityHashCode x))))
 
 (defmethod print-method ::hidden [x ^Writer writer]
   (let [meta (meta x)
-        ns (::ns meta)]
+        ns (::ns meta)
+        x (vary-meta x dissoc :type ::ns ::print-method)]
     (if (= *ns* ns)
-      (print-method (vary-meta x dissoc :type ::ns) writer)
-      ((::print-method meta) x writer))))
+      (print-method x writer)
+      (doto writer
+        (.write "#impl[")
+        (.write (str ns))
+        (.write " ")
+        (->> ((::print-method meta) x))
+        (.write "]")))))
 
 (defn cover
   "Hides data structure internals from printing in other namespaces"
