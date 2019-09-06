@@ -7,12 +7,14 @@
 There is value in hiding data even when it's immutable: drawing a line between
 public API and implementation details. You might want to create a library (or 
 module in an application) that allows it's users to create some entity and then 
-pass it back to your library. You want to be able to change this library in the 
-future without breaking your users' code, so you write in your documentation 
-that shape of your entity is internal and subject to change, hoping that people 
-will read and remember it... And this is where Blanket steps in: it shows users 
-of your library — at the REPL — that part of what you give them is 
-implementation details.
+pass it back to you to other functions. It creates a problem: users might start 
+using internals of returned data structure, even though they are not intended to 
+be used. You still want to be able to change shape of this data in the future 
+without breaking your users' code, so you write in your documentation that shape 
+of your entity is internal and subject to change, hoping that people will read 
+and remember it... And this is where Blanket steps in: it shows users of your 
+library — at the REPL — that part of what you give them is implementation 
+details.
 
 Blanket is extremely lightweight and non-intrusive: it changes covered objects' 
 metadata to only affect printing, so your covered hash-map is still the same 
