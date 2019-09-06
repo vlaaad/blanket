@@ -33,7 +33,7 @@ com.github.vlaaad/blanket {:git/url "https://github.com/vlaaad/blanket"
 
 Using maven:
 ```edn
-com.github.vlaaad/blanket {:mvn/verion "1.1.0"}
+com.github.vlaaad/blanket {:mvn/version "1.1.0"}
 ```
 
 # Usage
