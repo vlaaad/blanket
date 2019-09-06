@@ -38,29 +38,29 @@ com.github.vlaaad/blanket {:mvn/verion "1.0.0"}
 (ns service
   (:require [blanket.core :as blanket]))
 
-;; mark data structure as namespace-local
+;; mark data structure as namespace-local, optionally set how it's printed
 (def async-config
-  (blanket/cover {:async true}))
+  (blanket/cover {:async true} :print-method (blanket/print-as 'async-config)))
 
 ;; in same namespace, you'll still see it
-(prn async-config) ;; => {:async true}
-
-(def sync-config
-  (blanket/cover {:async false}))
+(prn async-config) 
+=> {:async true}
+;; in other namespace, you wont see it
+(in-ns 'service-user)
+(clojure.core/prn service/async-config) 
+=> #impl[service async-config]
+(in-ns 'service)
 
 (defn make [opts]
   ;; Since `make` can be called from other namespace, we should specify 
   ;; encapsulation namespace directly (*ns* will be different)
   (blanket/cover {:opts opts} :ns 'service))
 
+(in-ns 'service-user)
+(clojure.core/prn (service/make {:some :opts})) ;; => #impl[service 0x7c6442c2]
+(in-ns 'service)
+
+;; here goes ns API where intended use is passing previously created service
 (defn perform-request [service config] ,,,)
 
-(ns service-user
-  (:require service))
-
-;; create a service without seeing implementation details
-(prn (service/make {:some :opts})) ;; => #impl[service 0x7c6442c2]
-(prn service/async-config) ;; => #impl[service 0x6de0f580]
-
-(service/perform-request (service/make {:some :opts}) service/async-config)
 ```

@@ -21,6 +21,12 @@
     (in-ns 'blanket.core-test.b)
     (is (= "{:a 1}" (pr-str (blanket/reveal x))))))
 
+(deftest print-as
+  (in-ns 'blanket.core-test.a)
+  (let [x @(def x (blanket/cover {:a 1} :print-method (blanket/print-as 'boop)))]
+    (in-ns 'blanket.core-test.b)
+    (is (= "#impl[blanket.core-test.a boop]" (pr-str x)))))
+
 (deftest hide-reveal-cancel-each-other
   (is (= {} (stest/abbrev-result
               (stest/check-fn

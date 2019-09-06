@@ -5,6 +5,10 @@
 (defn- default-print-method [x ^Writer writer]
   (.write writer (format "0x%x" (System/identityHashCode x))))
 
+(defn print-as [x]
+  (fn [_ ^Writer writer]
+    (print-method x writer)))
+
 (defmethod print-method ::hidden [x ^Writer writer]
   (let [meta (meta x)
         ns (::ns meta)
