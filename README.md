@@ -5,19 +5,20 @@
 # Rationale
 
 There is value in hiding data even when it's immutable: drawing a line between
-public api and implementation details. You might want to create a library that
-allows it's users to create some entity and then pass it back to your library. 
-You want to be able to change this library in the future without breaking your 
-users' code, so you write in your documentation that shape of your entity is 
-internal and subject to change. Blanket has the same purpose: it shows users of 
-your library — at the REPL — that part of what you give them is implementation 
-details.
+public API and implementation details. You might want to create a library (or 
+module in an application) that allows it's users to create some entity and then 
+pass it back to your library. You want to be able to change this library in the 
+future without breaking your users' code, so you write in your documentation 
+that shape of your entity is internal and subject to change, hoping that people 
+will read and remember it... And this is where Blanket steps in: it shows users 
+of your library — at the REPL — that part of what you give them is 
+implementation details.
 
 Blanket is extremely lightweight and non-intrusive: it changes covered objects' 
-metadata to only affect printing, so your covered hash-map is still same map, 
-and your covered vector is still same vector, with all equality semantics etc.
-retained. It does not really prevent any access, just helps your users to get 
-better understanding of your library's API contracts (hence *soft* 
+metadata to only affect printing, so your covered hash-map is still the same 
+hash-map, and your covered vector is still the same vector, with all equality 
+semantics etc. retained. It does not really prevent any access, just helps your 
+users to get better understanding of your library's API contracts (hence *soft* 
 encapsulation).
 
 # Install
@@ -60,7 +61,6 @@ com.github.vlaaad/blanket {:mvn/verion "1.1.0"}
 (clojure.core/prn (service/make {:some :opts})) ;; => #impl[service 0x7c6442c2]
 (in-ns 'service)
 
-;; here goes ns API where intended use is passing previously created service
+;; here goes remaining API...
 (defn perform-request [service config] ,,,)
-
 ```
